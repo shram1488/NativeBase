@@ -71,7 +71,7 @@ const ScrollableTabView = createReactClass({
       currentPage: initialPage,
       scrollValue: new Animated.Value(initialPage),
       containerWidth: Dimensions.get("window").width,
-      sceneKeys: this.newSceneKeys({ currentPage: initialPage })
+      sceneKeys: this.newSceneKeys({ currentPage: this.props.initialPage })
     };
   },
 
@@ -131,6 +131,7 @@ const ScrollableTabView = createReactClass({
     children = this.props.children,
     callback = () => {}
   }) {
+    page = this.getRTLPageIfNeeded(page);
     let newKeys = this.newSceneKeys({
       previousKeys: this.state.sceneKeys,
       currentPage: page,
